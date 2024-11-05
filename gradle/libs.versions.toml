@@ -17,6 +17,11 @@ retrofit2KotlinxSerializationConverter = "1.0.0"
 hiltAndroid = "2.48"
 hiltCompiler = "2.48"
 hiltAndroidCompiler = "2.48"
+materialIconsExtended = "1.7.5"
+extendedspans = "1.3.0"
+constraintlayoutCompose = "1.1.0"
+glide = "1.0.0-beta01"
+
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -48,6 +53,16 @@ retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroidCompiler" }
+
+#Glide
+glide = { module = "com.github.bumptech.glide:compose", version.ref = "glide" }
+
+#View
+extendedspans = { module = "me.saket.extendedspans:extendedspans", version.ref = "extendedspans" }
+androidx-constraintlayout-compose = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintlayoutCompose" }
+
+#Icons
+androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

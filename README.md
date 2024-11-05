@@ -49,4 +49,12 @@ Data, Domain 모듈을 먼저 구현하는 이유
 - 디펜던시는 Group, Artifact, VersionRef 로 구성되어 있음 
 
 ## [Part2](https://youtu.be/Q8qwGdx1q7k?si=4qmZtzFExXjWtBxQ)
+Presentation Layer
+- Jectpack Compose 를 사용하여 UI 컴포넌트를 빌드
+
+### Row, Column, Modifier
+Row - 가로열 구성
+Column - 세로열 구성
+Modifier - 구성 가능한 동작이나 모양을 장식하거나 변경
+
 ## [Part3](https://youtu.be/earJE0MBQ3g?si=TqUapIZCejSYuO1u)
