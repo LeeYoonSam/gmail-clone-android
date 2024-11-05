@@ -2,6 +2,7 @@ package com.ys.data.remote.handler
 
 import com.ys.core.error.Failure
 import com.ys.core.functional.Either
+import com.ys.core.mapper.ResultMapper
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -10,6 +11,7 @@ import retrofit2.Response
 suspend fun <T, R> safeApiCall(
     ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     apiCall: suspend () -> Response<T>,
+    mapper: ResultMapper<T, R>
 ): Either<Failure, R> {
     return withContext(ioDispatcher) {
         runCatching {
