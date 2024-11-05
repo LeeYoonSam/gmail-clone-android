@@ -26,3 +26,71 @@ class EmailRepositoryImpl @Inject constructor(
         mapper = { emailDetailsMapper.map(it) }
     )
 }
+
+//fun main() {
+//    runBlocking {
+//        // Create mock instances
+//        val apiService = MockApiService()
+//        val emailListMapper = EmailListMapper()
+//        val emailDetailsMapper = EmailDetailsMapper()
+//
+//        // Initialize EmailRepositoryImpl with mock dependencies
+//        val emailRepository = EmailRepositoryImpl(apiService, emailListMapper, emailDetailsMapper)
+//
+//        // Test getEmailList
+//        val emailListResult = emailRepository.getEmailList()
+//        println("Email List Result: $emailListResult")
+//
+//        // Test getEmailDetails
+//        val emailDetailsResult = emailRepository.getEmailDetails()
+//        println("Email Details Result: $emailDetailsResult")
+//    }
+//}
+//
+//class MockApiService : ApiService {
+//    override suspend fun getEmailList(): Response<List<EmailListItemDto>> {
+//        val mockEmailList = arrayListOf(
+//            EmailListItemDto(
+//                hasAttachments = false,
+//                id = "1",
+//                isImportant = true,
+//                isPromotional = false,
+//                payload = Payload("", "", "Coroutine lab", "", ""),
+//                snippet = "Mock snippet",
+//                subject = "Mock subject",
+//                threadId = "thread-1",
+//                timestamp = 1
+//            )
+//        )
+//        return Response.success(mockEmailList)
+//    }
+//
+//    override suspend fun getEmailDetail(): Response<EmailDetailsDto> {
+//        val mockEmailDetails = EmailDetailsDto(
+//            id = "1",
+//            body = Body("", ""),
+//            timestamp = 2,
+//            isPromotional = false,
+//            hasAttachments = false,
+//            isImportant = false,
+//            labels = emptyList(),
+//            snippet = "",
+//            threadId = "",
+//            payload = com.ys.data.dto.emaildetails.Payload(
+//                date = "",
+//                attachments = emptyList(),
+//                subject = "",
+//                cc = emptyList(),
+//                to = emptyList(),
+//                bcc = emptyList(),
+//                senderInfo = SenderInfo(
+//                    profileImage = "",
+//                    email = "coroutinelab@test.com",
+//                    name = "coroutinelab"
+//                )
+//            )
+//        )
+//
+//        return Response.success(mockEmailDetails)
+//    }
+//}
