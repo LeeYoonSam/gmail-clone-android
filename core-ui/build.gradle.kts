@@ -51,6 +51,7 @@ dependencies {
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.material3)
     api(libs.androidx.ui.tooling.preview)
+    implementation(libs.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
