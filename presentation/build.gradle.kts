@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -30,9 +32,18 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
 }
 
 dependencies {
+    api(project(":domain"))
+    api(project(":core-ui"))
+    implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -40,4 +51,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.android)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.hilt.navigation.compose)
 }

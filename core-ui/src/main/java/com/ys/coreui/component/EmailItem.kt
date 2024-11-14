@@ -126,7 +126,7 @@ fun EmailItem(
 
 @Preview
 @Composable
-fun EmailItemPreview() {
+private fun EmailItemPreview() {
     Surface {
         EmailItem(
             modifier = Modifier,
@@ -142,7 +142,7 @@ fun EmailItemPreview() {
 
 @Preview
 @Composable
-fun EmailItemNoProfilePreview() {
+private fun EmailItemNoProfilePreview() {
     Surface {
         EmailItem(
             modifier = Modifier,
