@@ -124,7 +124,7 @@ fun EmailDetailsSenderInfo(
 
 @Preview
 @Composable
-fun EmailDetailsSenderInfoPreview() {
+private fun EmailDetailsSenderInfoPreview() {
     Surface {
         EmailDetailsSenderInfo(
             profileImageUrl = "https://i.pravatar.cc/250?img=5",
@@ -136,7 +136,7 @@ fun EmailDetailsSenderInfoPreview() {
 
 @Preview
 @Composable
-fun NonPromotionalEmailDetailsSenderInfoPreview() {
+private fun NonPromotionalEmailDetailsSenderInfoPreview() {
     Surface {
         EmailDetailsSenderInfo(
             profileImageUrl = "https://i.pravatar.cc/250?img=5",

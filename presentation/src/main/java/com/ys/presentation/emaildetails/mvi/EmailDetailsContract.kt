@@ -4,11 +4,11 @@ import com.ys.coreui.mvi.MVIContract
 import com.ys.domain.model.emaildetails.EmailDetailsModel
 
 interface EmailDetailsContract : MVIContract<
-        EmailDetailsContract.UIState,
+        EmailDetailsContract.EmailDetailsState,
         EmailDetailsContract.EmailDetailsEffect,
         EmailDetailsContract.EmailDetailsEvent
         > {
-    data class UIState(
+    data class EmailDetailsState(
         val details: EmailDetailsModel? = null,
         val isLoading: Boolean = true,
         val isError: Boolean = false

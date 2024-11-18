@@ -20,14 +20,14 @@ class EmailDetailsViewModel @Inject constructor(
     private val detailsUseCase: EmailDetailsUseCase
 ) : ViewModel(), EmailDetailsContract {
 
-    private val mutableUIState: MutableStateFlow<EmailDetailsContract.UIState> =
-        MutableStateFlow(EmailDetailsContract.UIState())
+    private val mutableUIState: MutableStateFlow<EmailDetailsContract.EmailDetailsState> =
+        MutableStateFlow(EmailDetailsContract.EmailDetailsState())
 
     private val mutableSharedFlow: MutableSharedFlow<EmailDetailsContract.EmailDetailsEffect> =
         MutableSharedFlow()
 
-    override val state: StateFlow<EmailDetailsContract.UIState>
-        get() = mutableUIState.stateInWhileActive(viewModelScope, EmailDetailsContract.UIState()) {
+    override val state: StateFlow<EmailDetailsContract.EmailDetailsState>
+        get() = mutableUIState.stateInWhileActive(viewModelScope, EmailDetailsContract.EmailDetailsState()) {
             event(EmailDetailsContract.EmailDetailsEvent.LoadEmailDetails)
         }
 
