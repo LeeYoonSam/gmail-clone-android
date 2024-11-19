@@ -77,7 +77,7 @@ fun DetailsAppBar(
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun DetailsAppBarPreview() {
+private fun DetailsAppBarPreview() {
     val navController = rememberNavController()
     DetailsAppBar(navController = navController)
 }
