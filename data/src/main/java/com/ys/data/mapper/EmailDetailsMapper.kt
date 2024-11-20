@@ -12,8 +12,8 @@ import com.ys.domain.model.emaildetails.RecipientModel
 import com.ys.domain.model.emaildetails.SenderInfoModel
 import javax.inject.Inject
 
-class EmailDetailsMapper @Inject constructor(): ResultMapper<EmailDetailsDto, EmailDetailsModel> {
-    override fun map(input: EmailDetailsDto): EmailDetailsModel = input.toEmailDetailsModel()
+class EmailDetailsMapper @Inject constructor(): ResultMapper<List<EmailDetailsDto>, EmailDetailsModel> {
+    override fun map(input: List<EmailDetailsDto>): EmailDetailsModel = input.first().toEmailDetailsModel()
 
     private fun EmailDetailsDto.toEmailDetailsModel(): EmailDetailsModel {
         return EmailDetailsModel(
