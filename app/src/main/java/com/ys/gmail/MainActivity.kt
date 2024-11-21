@@ -4,9 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Videocam
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,6 +55,27 @@ class MainActivity : ComponentActivity() {
                                 TopAppbarState.HOME -> HomeAppBar(modifier = Modifier.padding(horizontal = 16.dp))
                                 TopAppbarState.DETAILS -> DetailsAppBar(navController = navController)
                             }
+                        },
+                        bottomBar = {
+                            BottomAppBar(modifier = Modifier) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceEvenly
+                                ) {
+                                    IconButton(onClick = {}) {
+                                        Icon(
+                                            imageVector = Icons.Filled.Email,
+                                            contentDescription = "Email"
+                                        )
+                                    }
+                                    IconButton(onClick = {}) {
+                                        Icon(
+                                            imageVector = Icons.Filled.Videocam,
+                                            contentDescription = "Video Call"
+                                        )
+                                    }
+                                }
+                            }
                         }
                     ) { innerPadding ->
                         NavHost(
@@ -51,7 +83,18 @@ class MainActivity : ComponentActivity() {
                             startDestination = EmailList,
                             modifier = Modifier.padding(innerPadding)
                         ) {
-                            composable<EmailList> {
+                            composable<EmailList>(
+                                exitTransition = {
+                                    return@composable slideOutOfContainer(
+                                        AnimatedContentTransitionScope.SlideDirection.Start, tween(700)
+                                    )
+                                },
+                                popEnterTransition = {
+                                    return@composable slideIntoContainer(
+                                        AnimatedContentTransitionScope.SlideDirection.End, tween(700)
+                                    )
+                                }
+                            ) {
                                 topAppbarState = TopAppbarState.HOME
                                 EmailListScreen { model ->
                                     navController.navigate(
@@ -66,7 +109,18 @@ class MainActivity : ComponentActivity() {
                                 }
                             }
 
-                            composable<EmailDetails> {
+                            composable<EmailDetails>(
+                                enterTransition = {
+                                    return@composable slideIntoContainer(
+                                        AnimatedContentTransitionScope.SlideDirection.Start, tween(700)
+                                    )
+                                },
+                                popExitTransition = {
+                                    return@composable slideOutOfContainer(
+                                        AnimatedContentTransitionScope.SlideDirection.End, tween(700)
+                                    )
+                                }
+                            ) {
                                 topAppbarState = TopAppbarState.DETAILS
                                 val args = it.toRoute<EmailDetails>()
                                 EmailDetailsScreen(
