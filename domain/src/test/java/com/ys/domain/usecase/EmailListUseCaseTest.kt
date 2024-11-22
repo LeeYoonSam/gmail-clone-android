@@ -11,6 +11,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.IOException
 
+/**
+ * JUnit 5 테스트
+ */
 class EmailListUseCaseTest {
 
     private val repository: EmailRepository = mockk()
