@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.android.junit)
 }
 
 android {
@@ -32,6 +33,11 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    sourceSets {
+        getByName("main").java.srcDirs("src/main/java")
+        getByName("test").java.srcDirs("src/test/java")
+        getByName("androidTest").java.srcDirs("src/androidTest/java")
+    }
 }
 
 dependencies {
@@ -39,6 +45,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.bundles.unittest)
+    androidTestImplementation(libs.kotlin.reflect)
 }
