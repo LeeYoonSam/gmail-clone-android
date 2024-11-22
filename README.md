@@ -79,3 +79,76 @@ Modifier - 구성 가능한 동작이나 모양을 장식하거나 변경
 
 
 ## [Part3](https://youtu.be/earJE0MBQ3g?si=TqUapIZCejSYuO1u)
+
+### TESTING PYRAMID
+조직과 개발자가 자동화된 테스트의 올바른 균형을 찾도록 안내하여 고품질 소프트웨어를 식별하는데 도움이되는 모델 입니다.
+
+- End to End: **10%**
+  - 전체 애플리케이션 기능이 사용자 관점에서 예상되는지 확인하는 실제 사용자 상호 작용을 시뮬레이션
+  - 실행 속도 느림
+- Integration Test: **20%**
+  - 모듈 간의 상호 작용을 확인하여 더 넓은 범위를 제공
+  - 실행 속도 중간
+- Unit Test: **70%**
+  - 실행이 빠르고 즉각적인 피드백을 제공
+  - 실행 속도 빠름
+
+유지 관리 가능한 코드 기반을 달성할 수 있다고 제안하는 피라미드처럼 테스트의 균형을 유지하여 개발을 보다 효율적이고 비용 효율적이며 강력하게 만드는 구조화된 테스트 접근 방식을 제공
+
+### What is Testing
+효과적인 테스트를 통해 앱 안전성과 신뢰성을 보장하는 방법을 알아 봅니다.
+
+- Ensure correctness of functionality(기능의 정확성 보장)
+- Improving code quality(코드 품질 향상)
+- Reducing development cost(개발 비용 절감)
+- Quality and reliability(품질 및 신뢰성)
+- Risk mitigation(위험 완화)
+
+**Details:**
+- 프로그램이 예상대로 정확하게 작동하는지 확인
+- 요구 사항을 충족하는지 확인
+- 다양한 상황에서 올바르게 작동하여 더욱 깨끗하고 유지 관리하기 쉬운 코드로 이어집니다.
+- 버그를 잡아 초기 테스트를 통해 시간과 비용을 절약
+- 프로덕션에서 비용이 많이 드는 수정을 방지하며 개발자와 이해 관계자에게 앱이 안정적이고 사용할 준비가 되었다는 확신을 줍니다.
+
+### Why do we write test case?
+- 개발 프로세스를 더욱 원활하게 만들고 보다 안정적인 애플리케이션을 만드는 투자
+- 테스트를 통해 코드 기반이 커짐에 따라 버그의 위험이 기하급수적으로 증가
+- 잠재적인 문제는 관리 가능한 상태로 유지되어 더 나은 품질 관리와 원활한 프로젝트 확장을 보장하여 테스트에 시간을 투자함으로써 소프트웨어가 발전함에 따라 안정성을 유지하는데 도움이 됩니다.
+
+### What you will Learn
+- JUnit5
+  - 3개의 모듈로 구성
+    - Jupiter - Provides annotations
+    - Vintage - Allows backward compatibility
+    - Platform - Acts as a foundation
+  - JUnit4 의 차이점
+    - 클래스 수준 수명 주기 의미가 있는 테스트 전후와 같은 핵심 주석이 있는 단일 모놀리식 프레임워크
+    - 설정 및 톤 메서드는 클래스당 한번 실행, 이는 AssertEquals 및 AssertTrue와 같은 기본 어설션을 사용 하지만 매개변수화된 테스트에 대한 지원이 제한적이며 기본 병렬 테스트 실행이 부족
+  - JUnit5 를 사용하면 향상된 기능을 사용 할 수 있고 더욱 효율적이고 효과적으로 만들 수 있다.
+- MockK
+- Kotest
+- Compose UI testing
+- Compose screenshot
+- Code Coverage
+
+### Test Double
+- 모든 종류의 대체 용어를 가리키는 일반적인 용어
+- 실제 물건 대신 사용 테스트하는 동안 코드의 다양한 부분을 시뮬레이션하여 테스트하려는 동작을 격리하는 데 도움이 되며 테스트가 외부 구성 요소에 의존하지 않고 특정 논리에 초점을 맞추도록 보장
+- Mark, Stub, Mock을 포함한 여러 유형의 테스트 더블이 존재
+
+### MockK
+- Modern mocking library specifically designed for Kotlin
+- Create mocks, stubs, and spies
+- Support for Coroutine
+- MockK supports the use of annotations like @MockK, @RelaxedMockK, and @InjectMockKs
+- MockK allows you to capture arguments
+- MockK allows you to verify the number of calls made to a mock or that specific interactions occurred.
+
+### Kotest
+- Kotest is a flexible and powerful Kotlin testing framework
+- multiple testing styles
+- Offers a rich set of built-in assertions(shouldBe, shouldThrow, etc.)
+- Allows you to perform property-based testing, where tests are automatically run with a variety of generated inputs to explore edge cases.
+- Supports tags for organizing and running specific subsets of test.
+- Improve readability and expressiveness
