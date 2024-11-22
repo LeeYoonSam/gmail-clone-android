@@ -21,7 +21,10 @@ import androidx.compose.ui.unit.dp
 import com.ys.coreui.R
 
 @Composable
-fun HomeAppBar(modifier: Modifier = Modifier) {
+fun HomeAppBar(
+    modifier: Modifier = Modifier,
+    onMenuClick: () -> Unit
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -32,7 +35,7 @@ fun HomeAppBar(modifier: Modifier = Modifier) {
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = {}) {
+        IconButton(onClick = onMenuClick) {
             Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = "Menu",
@@ -54,5 +57,5 @@ fun HomeAppBar(modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun HomeAppBarPreview() {
-    HomeAppBar()
+    HomeAppBar(onMenuClick = {})
 }

@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Inbox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -15,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -57,17 +60,47 @@ fun DrawerMenuItem(
 @Composable
 fun DrawerDivider() {
     HorizontalDivider(
-        modifier = Modifier.fillMaxWidth().padding(8.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
         color = MaterialTheme.colorScheme.outline
     )
 }
 
 @Composable
-fun DrawerCategory(title:String){
+fun DrawerCategory(title: String) {
     Text(
         text = title,
         modifier = Modifier.padding(8.dp),
         color = MaterialTheme.colorScheme.onSecondaryContainer,
         style = MaterialTheme.typography.labelSmall
     )
+}
+
+@Composable
+@Preview(showBackground = true)
+private fun DrawerTitleItemPreview() {
+    DrawerTitleItem("DrawerTitleItem")
+}
+
+@Composable
+@Preview(showBackground = true)
+private fun DrawerMenuItemPreview() {
+    DrawerMenuItem(
+        title = "DrawerMenuItem",
+        icon = Icons.Filled.Inbox,
+        onClick = {}
+    )
+}
+
+@Composable
+@Preview(showBackground = true)
+private fun DrawerDividerPreview() {
+    DrawerDivider()
+}
+
+@Composable
+@Preview(showBackground = true)
+private fun DrawerCategoryPreview() {
+    DrawerCategory("DrawerCategory")
 }
