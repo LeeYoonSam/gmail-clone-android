@@ -43,6 +43,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(libs.hilt.android)
+    testImplementation(libs.jupiter.junit.jupiter)
     kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.bundles.unittest)
