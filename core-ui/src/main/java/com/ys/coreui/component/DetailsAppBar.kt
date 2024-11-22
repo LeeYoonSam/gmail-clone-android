@@ -11,8 +11,10 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Mail
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -28,6 +30,7 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.ys.coreui.content.getDropDownMenuList
 
 @Composable
 fun DetailsAppBar(
@@ -71,6 +74,14 @@ fun DetailsAppBar(
             onDismissRequest = { isMenuExpanded = false },
             offset = DpOffset(offsetX, 0.dp)
         ) {
+            getDropDownMenuList().forEach {
+                DropdownMenuItem(
+                    text = {
+                        Text(it.title)
+                    },
+                    onClick = { it.onClick() }
+                )
+            }
         }
     }
 }
