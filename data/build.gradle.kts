@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.android.junit)
 }
 
 android {
@@ -48,6 +49,8 @@ dependencies {
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    testImplementation(libs.bundles.unittest)
+    implementation(libs.kotlin.reflect)
 }
 
 kapt {
