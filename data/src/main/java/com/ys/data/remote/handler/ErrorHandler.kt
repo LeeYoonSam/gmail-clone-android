@@ -5,6 +5,7 @@ import com.ys.core.functional.Either
 import okio.IOException
 import retrofit2.HttpException
 
+
 fun Throwable.toEither(): Either<Failure, Nothing> {
     return when (this) {
         is IOException -> Either.Left(Failure.NetworkError(this))
