@@ -23,22 +23,21 @@ class EmailDetailsMapper @Inject constructor(): ResultMapper<List<EmailDetailsDt
             cc = payload.cc.toRecipientModel(),
             bcc = payload.bcc.toRecipientModel(),
             subject = payload.subject.orEmpty(),
-            htmlBody = body?.html,
-            plainBody = body?.text.orEmpty(),
+            htmlBody = body?.html ?: body?.text.orEmpty(),
             date = payload.date.orEmpty(),
             isImportant = isImportant.orDefault(),
             isStarred = labels.contains("Starred"),
             isPromotional = isPromotional.orDefault(),
             fileInfo = payload.attachments.mapOrDefault {
                 FileInfo(
-                    filename = it?.filename.orEmpty(),
-                    mimeType = it?.mimeType.orEmpty(),
-                    size = it?.size ?: 0L,
-                    downLoadUrl = it?.downloadUrl
+                    filename = it.filename.orEmpty(),
+                    mimeType = it.mimeType.orEmpty(),
+                    size = it.size ?: 0L,
+                    downLoadUrl = it.downloadUrl
                 )
             },
-            labels = labels.mapOrDefault {
-                it.orEmpty()
+            labels = labels.mapOrDefault(emptyList()) {
+                it
             }
         )
     }

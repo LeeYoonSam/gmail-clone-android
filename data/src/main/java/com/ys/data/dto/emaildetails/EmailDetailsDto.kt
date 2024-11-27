@@ -16,7 +16,7 @@ data class EmailDetailsDto(
     @SerialName("isPromotional")
     val isPromotional: Boolean?,
     @SerialName("labels")
-    val labels: List<String?>,
+    val labels: List<String>,
     @SerialName("payload")
     val payload: Payload,
     @SerialName("snippet")

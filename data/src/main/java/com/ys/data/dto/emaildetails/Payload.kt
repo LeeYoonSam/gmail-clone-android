@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Payload(
     @SerialName("attachments")
-    val attachments: List<Attachment?>,
+    val attachments: List<Attachment>,
     @SerialName("bcc")
     val bcc: List<RecipientInfo>?,
     @SerialName("cc")

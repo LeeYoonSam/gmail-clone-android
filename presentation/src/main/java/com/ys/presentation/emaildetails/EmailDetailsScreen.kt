@@ -89,7 +89,7 @@ fun EmailDetailsUi(
                 }
             }
             settings.javaScriptEnabled = true
-            loadData(model.htmlBody ?: model.plainBody, "text/html", "UTF-8")
+            loadData(model.htmlBody, "text/html", "UTF-8")
         }
     }
 
