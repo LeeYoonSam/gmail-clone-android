@@ -14,7 +14,7 @@ data class EmailListItemDto(
     @SerialName("isPromotional")
     val isPromotional: Boolean?,
     @SerialName("payload")
-    val payload: Payload?,
+    val payload: Payload,
     @SerialName("snippet")
     val snippet: String?,
     @SerialName("subject")
