@@ -35,7 +35,6 @@ kotlinxCoroutinesTest = "1.9.0-RC.2"
 mockk = "1.13.12"
 mockkAndroid = "1.12.0"
 uiTestManifest = "1.7.5"
-junitJupiterVersion = "5.11.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
