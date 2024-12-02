@@ -6,41 +6,40 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.ys.coreui.component.EmailItem
 import com.ys.coreui.component.FullScreenError
 import com.ys.coreui.component.LinearFullScreenProgress
 import com.ys.coreui.functional.toFormattedDate
 import com.ys.domain.model.emaillist.EmailListItemModel
 import com.ys.presentation.emaillist.mvi.EmailListContract
-import com.ys.presentation.emaillist.mvi.EmailListViewModel
-import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun EmailListScreen(
-    viewModel: EmailListViewModel = hiltViewModel(),
+    state: EmailListContract.EmailListState,
+    effect: EmailListContract.EmailListEffect?,
+    dispatch: (EmailListContract.EmailListEvent) -> Unit,
     onItemClick: (EmailListItemModel) -> Unit
 ) {
-    val states = viewModel.state.collectAsState().value
-    val dispatch: (EmailListContract.EmailListEvent) -> Unit = { event ->
-        viewModel.event(event)
-    }
-
-    LaunchedEffect(key1 = viewModel.effect) {
-        viewModel.effect.collectLatest {
+    LaunchedEffect(key1 = effect) {
+        effect?.let {
             when (it) {
                 is EmailListContract.EmailListEffect.NavigateToEmailDetails -> onItemClick(it.model)
             }
         }
     }
 
-    when (states) {
-        is EmailListContract.EmailListState.Error -> FullScreenError(errorMessage = states.error.toString())
-        EmailListContract.EmailListState.Loading -> LinearFullScreenProgress()
-        is EmailListContract.EmailListState.Success -> EmailListUi(states, dispatch)
+    when (state) {
+        is EmailListContract.EmailListState.Error -> FullScreenError(errorMessage = state.error.toString())
+        EmailListContract.EmailListState.Loading -> LinearFullScreenProgress(
+            modifier = Modifier.semantics {
+                contentDescription = "Loading"
+            }
+        )
+        is EmailListContract.EmailListState.Success -> EmailListUi(state, dispatch)
     }
 }
 

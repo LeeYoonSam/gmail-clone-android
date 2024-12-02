@@ -152,3 +152,33 @@ Modifier - 구성 가능한 동작이나 모양을 장식하거나 변경
 - Allows you to perform property-based testing, where tests are automatically run with a variety of generated inputs to explore edge cases.
 - Supports tags for organizing and running specific subsets of test.
 - Improve readability and expressiveness
+
+### Android - Screenshot Test
+기본 아이디어
+- UI의 기본 이미지를 캡처한 다음 변경 사항이 있을 때마다 새 이미지와 비교하여 시각적으로 다른점이 없는지 확인합니다.
+- 스크린 테스트는 느릴 수 있기 때문에 일반적으로 밤새 실행되도록 예약된 별도의 파이프라인에서 실행 됩니다.
+
+**사용하기**
+
+gradle.properties
+```properties
+android.experimental.enableScreenshotTest=true
+```
+
+build.gradle
+```kotlin
+plugins {
+    ...
+    alias(libs.plugins.screenshot)
+}
+
+android {
+    ...
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
+}
+
+dependencies {
+    ...
+    screenshotTestImplementation(libs.androidx.compose.ui.tooling)
+}
+```

@@ -20,7 +20,6 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,36 +27,37 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.ys.coreui.component.EmailDetailsBottomSection
 import com.ys.coreui.component.EmailDetailsSenderInfo
 import com.ys.coreui.component.EmailDetailsSubject
 import com.ys.coreui.component.FullScreenError
 import com.ys.coreui.component.LinearFullScreenProgress
 import com.ys.domain.model.emaildetails.EmailDetailsModel
-import com.ys.presentation.emaildetails.mvi.EmailDetailsViewModel
+import com.ys.presentation.emaildetails.mvi.EmailDetailsContract
 
 @Composable
 fun EmailDetailsScreen(
-    viewModel: EmailDetailsViewModel = hiltViewModel(),
+    state: EmailDetailsContract.EmailDetailsState,
     from: String,
     profileImage: String?,
     subject: String,
     isPromotional: Boolean
 ) {
-    val states = viewModel.state.collectAsState()
-
-    if (states.value.isLoading) {
-        LinearFullScreenProgress()
+    if (state.isLoading) {
+        LinearFullScreenProgress(modifier = Modifier.semantics {
+            contentDescription = "Loading"
+        })
     }
 
-    if (states.value.isError) {
+    if (state.isError) {
         FullScreenError(errorMessage = "Something went wrong")
     }
 
-    states.value.details?.let {
+    state.details?.let {
         EmailDetailsUi(
             from = from,
             profileImage = profileImage,

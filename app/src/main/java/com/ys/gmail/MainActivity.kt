@@ -29,6 +29,7 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +37,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -52,7 +54,10 @@ import com.ys.gmail.navigation.EmailDetails
 import com.ys.gmail.navigation.EmailList
 import com.ys.gmail.ui.theme.GmailCloneTheme
 import com.ys.presentation.emaildetails.EmailDetailsScreen
+import com.ys.presentation.emaildetails.mvi.EmailDetailsViewModel
 import com.ys.presentation.emaillist.EmailListScreen
+import com.ys.presentation.emaillist.mvi.EmailListContract
+import com.ys.presentation.emaillist.mvi.EmailListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -128,7 +133,18 @@ class MainActivity : ComponentActivity() {
                                         }
                                     ) {
                                         topAppbarState = TopAppbarState.HOME
-                                        EmailListScreen { model ->
+                                        val viewModel: EmailListViewModel = hiltViewModel()
+                                        val state by viewModel.state.collectAsState()
+                                        val effect by viewModel.effect.collectAsState(initial = null)
+                                        val dispatch: (EmailListContract.EmailListEvent) -> Unit = { event ->
+                                            viewModel.event(event)
+                                        }
+
+                                        EmailListScreen(
+                                            state = state,
+                                            effect = effect,
+                                            dispatch = dispatch
+                                        ) { model ->
                                             navController.navigate(
                                                 EmailDetails(
                                                     from = model.from,
@@ -155,7 +171,11 @@ class MainActivity : ComponentActivity() {
                                     ) {
                                         topAppbarState = TopAppbarState.DETAILS
                                         val args = it.toRoute<EmailDetails>()
+                                        val viewModel: EmailDetailsViewModel = hiltViewModel()
+                                        val state by viewModel.state.collectAsState()
+
                                         EmailDetailsScreen(
+                                            state = state,
                                             from = args.from,
                                             profileImage = args.profileImage,
                                             subject = args.subject,
