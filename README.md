@@ -182,3 +182,11 @@ dependencies {
     screenshotTestImplementation(libs.androidx.compose.ui.tooling)
 }
 ```
+
+**스크린샷 테스트 작성 및 실행**
+- screenshotTest 소스 세트에 테스트 파일을 만들고 Composable, PreView 로 기준 뷰를 생성
+- 기준 스크린샷 캡처
+  - `./gradlew updateDebugScreenshotTest` 스크린샷 생성 명령 
+  - `app/src/debug/screenshotTest/reference` 스크린샷 이미지 생성 결과 위치
+- 스크린샷 테스트 검증 실행
+  - gradle presentation:validateDebugScreenshotTest
