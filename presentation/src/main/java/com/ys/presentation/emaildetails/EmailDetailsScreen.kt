@@ -41,11 +41,11 @@ import com.ys.presentation.emaildetails.mvi.EmailDetailsContract
 
 @Composable
 fun EmailDetailsScreen(
-    state: EmailDetailsContract.EmailDetailsState,
     from: String,
     profileImage: String?,
     subject: String,
-    isPromotional: Boolean
+    isPromotional: Boolean,
+    state: EmailDetailsContract.EmailDetailsState
 ) {
     if (state.isLoading) {
         LinearFullScreenProgress(modifier = Modifier.semantics {
