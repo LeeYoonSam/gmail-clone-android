@@ -115,7 +115,7 @@ fun EmailDetailsUi(
                     Icon(
                         imageVector = Icons.Outlined.Star,
                         tint = if (model.isStarred) Color(0xFFFFD700) else Color(0x706B6B6E),
-                        contentDescription = null,
+                        contentDescription = "Star",
                         modifier = Modifier.size(24.dp)
                     )
                 }

@@ -5,16 +5,19 @@
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testSuccessState()">
+      <SelectionState runConfigName="testErrorState()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="EmailListScreenKtTest">
+      <SelectionState runConfigName="testLoadingState()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testEmailItemClickOpensEmailDetailsScreen()">
+      <SelectionState runConfigName="testSuccessWithNonPromotionalState()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="testEmailItemClickOpensEmailDetailsScreen() (1)">
+      <SelectionState runConfigName="EmailDetailsScreenTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="testSuccessWithPromotionalState()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
