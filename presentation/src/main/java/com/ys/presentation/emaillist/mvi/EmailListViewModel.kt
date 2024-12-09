@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.ys.core.functional.fold
 import com.ys.coreui.functional.stateInWhileActive
 import com.ys.domain.usecase.EmailListUseCase
+import com.ys.presentation.emaillist.log.EmailListLogService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,13 +18,25 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EmailListViewModel @Inject constructor(
-    private val getEmailsUseCase: EmailListUseCase
+    private val getEmailsUseCase: EmailListUseCase,
+    emailListLogService: EmailListLogService,
 ) : ViewModel(), EmailListContract {
+
     private val mutableUIState: MutableStateFlow<EmailListContract.EmailListState> =
         MutableStateFlow(EmailListContract.EmailListState.Loading)
 
     private val mutableSharedFlow: MutableSharedFlow<EmailListContract.EmailListEffect> =
         MutableSharedFlow()
+
+    private val mutableEventFlow: MutableSharedFlow<EmailListContract.EmailListEvent> =
+        MutableSharedFlow()
+
+    init {
+        emailListLogService.setObserveEvents(
+            events = mutableEventFlow.asSharedFlow(),
+            coroutineScope = viewModelScope,
+        )
+    }
 
     override val state: StateFlow<EmailListContract.EmailListState>
         get() = mutableUIState
@@ -34,6 +47,10 @@ class EmailListViewModel @Inject constructor(
         get() = mutableSharedFlow.asSharedFlow()
 
     override fun event(event: EmailListContract.EmailListEvent) {
+        viewModelScope.launch {
+            mutableEventFlow.emit(event)
+        }
+
         when (event) {
             is EmailListContract.EmailListEvent.LoadEmailList -> {
                 loadEmail()

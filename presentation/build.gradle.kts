@@ -48,6 +48,7 @@ android {
 dependencies {
     api(project(":domain"))
     api(project(":core-ui"))
+    api(project(":log"))
     implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
