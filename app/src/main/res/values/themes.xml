@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.GmailClone" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="NightAdjusted.Theme.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar" >true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+    </style>
+
+    <style name="Theme.GmailClone.Splash" parent="NightAdjusted.Theme.Splash">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/news_avd_v02</item>
+        <item name="postSplashScreenTheme">@style/Theme.GmailClone</item>
+        <item name="android:windowSplashScreenBehavior" tools:ignore="NewApi">icon_preferred</item>
+    </style>
 </resources>
